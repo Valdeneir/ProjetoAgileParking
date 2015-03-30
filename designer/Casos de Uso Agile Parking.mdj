@@ -10399,18 +10399,6 @@
 				},
 				{
 					"_type": "UMLUseCase",
-					"_id": "AAAAAAFMa6ox1iBlKPI=",
-					"_parent": {
-						"$ref": "AAAAAAFMa6aIpB95gKQ="
-					},
-					"name": "Cds",
-					"visibility": "public",
-					"isAbstract": false,
-					"isFinalSpecialization": false,
-					"isLeaf": false
-				},
-				{
-					"_type": "UMLUseCase",
 					"_id": "AAAAAAFMa6pjeSCopAg=",
 					"_parent": {
 						"$ref": "AAAAAAFMa6aIpB95gKQ="
