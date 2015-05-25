@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Pagina Inicial</title>
+</h:head>
+<h:body style="background-image:url('imagem/img12.png');background-size:cover;width:100%; height:100%;">
+	
+	<h:form >	
+		<table width="100%" >				
+			<tr>			
+				<td colspan="3" align="center">
+					<ui:insert name="cabecalho" >
+								
+				<h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
+				font-size:3cm; "> Agile Parking</h1>	
+									
+					</ui:insert>					
+					</td>				
+			</tr>	
+			
+			<tr>
+				<td>
+				
+				<ui:insert name="menu">
+				
+						<h:panelGrid columns="1" style="background-color:black;">
+							<p:growl id="messages" showDetail="true" />
+							<p:tieredMenu style="width:200px; background-color:gold;">
+								<p:menuitem value="Menu" style="color:black;
+								text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
+								font-size:1cm;" />
+								
+								<p:menuitem value="Home" icon="ui-icon-home" outcome="index.xhtml"/>
+								
+								<p:submenu label="Clientes"  icon="ui-icon-person">
+								 
+																									
+									<p:menuitem value="Reserva de Vaga" style="color:black;
+								text-shadow:gold 1px -1px 2px" icon="ui-icon-tag" />
+								
+								</p:submenu>
+								
+								<p:submenu label="Funcionarios" icon="ui-icon-person">
+								
+									<p:submenu label="Manter Cliente" style="color:black;
+								text-shadow:gold 1px -1px 2px" icon="ui-icon-pencil">
+								 
+								 	<p:menuitem value="Adicionar Cliente" style="color:black;
+								text-shadow:gold 1px -1px 2px" icon="ui-icon-pencil"  />
+								
+									<p:menuitem value="Alterar Cliente" style="color:black;
+								text-shadow:gold 1px -1px 2px" icon="ui-icon-pencil" />
+								
+									<p:menuitem value="Remover Cliente" style="color:black;
+								text-shadow:gold 1px -1px 2px" icon="ui-icon-pencil" />
+								 																
+								</p:submenu>
+								
+									<p:menuitem value="Cadastrar Estacionamento" style="color:black;
+								text-shadow:gold 1px -1px 2px"  />
+																										
+									<p:menuitem value="Controle do Pátio" style="color:black;
+								text-shadow:gold 1px -1px 2px"  />
+																								
+									<p:menuitem value="Registrar Entrada" style="color:black;
+								text-shadow:gold 1px -1px 2px"  outcome="registrarEntrada.xhtml"/>
+																										
+									<p:menuitem value="Receber Mensalidades" style="color:black;
+								text-shadow:gold 1px -1px 2px" />
+									
+								</p:submenu>
+								
+								<p:menuitem value="Estatisticas"  icon="ui-icon-close" />
+								<p:menuitem value="Estacionamentos"   icon="ui-icon-search" />
+																
+							</p:tieredMenu>
+						</h:panelGrid>
+					</ui:insert>
+					<h:panelGrid id="dadosUsuario" columns="2"
+						style="color:gold;background-color:black; ">
+
+			 <h:outputText id="senha" value="Usuario:"/>    
+     
+       <h:selectOneMenu id="senha" label="Senha" value="#{usuarioMB.usuario.perfil}">
+        
+         <f:selectItem itemLabel="Funcionario" itemValue="Administrador"/>
+          <f:selectItem itemLabel="Cliente" itemValue="Supervisor"/>
+        </h:selectOneMenu>  
+						
+						<p:outputLabel id="login" value="Login: " />
+						<p:inputText id="login" label="Login"
+							value="" maxlength="50" size="11" />
+
+						<p:outputLabel id="senha" value="Senha: " />
+						<p:password id="senha" label="Senha" maxlength="10" size="11" />
+		
+						<p:commandButton value="OK" style="color:gold;background-color:black; " update="display" />
+        				<h:outputText id="display" value="#{basicView.text}" />
+
+					</h:panelGrid>
+					
+ 			
+				</td>
+					
+				<td  width="80%">
+				
+				<ui:insert name="conteudo" >
+								
+               
+                </ui:insert></td>
+                
+                <td width="100%" >  </td>
+                
+			</tr>
+		</table>
+	</h:form>
+</h:body>
+</html>

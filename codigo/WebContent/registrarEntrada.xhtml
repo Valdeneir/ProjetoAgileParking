@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+      
+  <ui:composition template="/index.xhtml">
+  
+    <ui:define name="conteudo" >
+   
+      <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
+				font-size:16;">Registrar Entrada</h1>
+      <h:panelGrid id="dadosUsuario" columns="2" style="background-color:gold;">
+        
+   <h:form>
+    <p:messages id="messages" showDetail="true"/>
+ 
+    <h:panelGrid columns="3" cellpadding="5" style="margin-bottom:10px">
+        <p:outputLabel value="Busca: "/>
+        <p:inputText id="keyword" value="#{watermarkView.keyword}" required="true" label="Keyword"/>
+        <p:watermark for="keyword" value="Placa do Veículo" id="watermark" />
+       
+       <div style="width: 100%;">
+        <p:commandButton value="Buscar" update="display" icon="ui-icon-search" />
+        <h:outputText id="display" value=""   />
+       </div>       	
+        	<br/>
+        	
+        <p:fieldset id="availableCarsField" legend="Estacionamentos ">
+        	<p:dataTable var="car" value="">
+           
+            <p:column headerText="Placa">
+                <h:outputText value="" />
+            </p:column>
+
+            <p:column headerText="cpf">
+                <h:outputText value="" />
+            </p:column>
+
+            <p:column headerText="Nome do Cliente" >
+                <h:outputText value="" />
+            </p:column>
+
+            <p:column headerText="Veiculo">
+                <h:outputText value="" />
+            </p:column>
+             <p:column headerText="cor">
+                <h:outputText value="" />
+            </p:column>
+            
+            <p:column headerText="Hora">
+                <h:outputText value="" />
+            </p:column>
+            
+            <p:column headerText="Data">
+                <h:outputText value="" />
+            </p:column>
+           
+        </p:dataTable>
+    </p:fieldset>
+        
+    </h:panelGrid>
+ 
+  	<p:commandButton value="Confirmar Registro de Não Cliente" update="display" icon="ui-icon-check" />
+    <h:outputText id="display" value="" />
+ 
+	<p:button outcome="cadastroCliente.xhtml" value="Adcionar Cliente" icon="ui-icon-check"/>
+   
+ 
+</h:form>
+ </h:panelGrid>
+     </ui:define>
+    
+  </ui:composition>
+</html>

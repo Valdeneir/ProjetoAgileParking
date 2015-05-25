@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+      
+  <ui:composition template="/index.xhtml">
+  
+    <ui:define name="conteudo" >
+   
+      <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
+				font-size:16;">Adicionar Cliente</h1>
+			
+	<h:form>
+				
+      <h:panelGrid id="dadosUsuario" columns="2"  style="background-color:gold;  " >
+        
+        <p:outputLabel id="nomeText" value="Nome:"/>
+        <p:inputText id="nome" nome="nome" value="#{clienteBean.cliente.nome}" maxlength="200" size="50"/>
+      
+      	<p:outputLabel id="cpfText" value="Data de Nascimento:"/>
+        <p:inputText id="cpf" nome="dataNascimento" value="#{clienteBean.cliente.dataNascimento}" maxlength="14" size="50"/>
+      
+        <p:outputLabel id="cpfText" value="CPF:"/>
+        <p:inputText id="cpf" nome="cpf" value="#{clienteBean.cliente.cpf}" maxlength="14" size="50"/>
+        
+        <p:outputLabel id="cpfText" value="RG:"/>
+        <p:inputText id="cpf" nome="rg" value="#{clienteBean.cliente.rg}" maxlength="14" size="50"/>
+      
+      	<p:outputLabel id="cpfText" value="Veiculo:"/>
+        <p:inputText id="cpf" nome="veiculo" value="#{clienteBean.cliente.veiculo}" maxlength="14" size="50"/>
+      
+      	<p:outputLabel id="cpfText" value="Cor do Veiculo:"/>
+        <p:inputText id="cpf" nome="cor" value="#{clienteBean.cliente.cor}" maxlength="14" size="50"/>
+      
+        <p:outputLabel id="emailText" value="Email:"/>
+        <p:inputText id="email" nome="email" value="#{clienteBean.cliente.email}" maxlength="50" size="50"/>
+      
+      	<p:outputLabel id="login" value="Login"/>
+        <p:inputText id="login" nome="login" value="#{clienteBean.cliente.login}" maxlength="50" size="50"/>
+      
+        <p:outputLabel id="senha" value="Senha:"/>
+        <p:password id="senha" nome="senha" value="#{clienteBean.cliente.senha}" maxlength="10" size="50"/>
+       
+        <p:outputLabel id="Csenha" value="Comfirma Senha:"/>
+        <p:password id="Csenha" nome="cSenha" value="#{clienteBean.cliente.cSenha}" maxlength="10" size="50"/>
+                   
+      <h:commandButton value="Salvar" icon="ui-icon-check" action="#{clienteBean.cadastrar()}"/>
+                    
+        	
+      </h:panelGrid>
+      <br/>
+        	
+      	</h:form>
+      
+    </ui:define>
+    
+  </ui:composition>
+</html>
