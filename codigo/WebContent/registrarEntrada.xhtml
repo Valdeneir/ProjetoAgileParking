@@ -5,73 +5,55 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
-      
+      <head> </head>
       
   <ui:composition template="/index.xhtml">
   
     <ui:define name="conteudo" >
-   
+    
+    
+   	<script type="text/javascript">
+
+  	</script>
+    
       <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
 				font-size:16;">Registrar Entrada</h1>
-      <h:panelGrid id="dadosUsuario" columns="2" style="background-color:gold;">
-        
-   <h:form>
-    <p:messages id="messages" showDetail="true"/>
- 
-    <h:panelGrid columns="3" cellpadding="5" style="margin-bottom:10px">
-        <p:outputLabel value="Busca: "/>
-        <p:inputText id="keyword" value="#{watermarkView.keyword}" required="true" label="Keyword"/>
-        <p:watermark for="keyword" value="Placa do Veículo" id="watermark" />
+	
+	<h:form>	
+	<p:messages id="messages" showDetail="true"/>		
+ 	<h:panelGrid id="dadosUsuario" columns="3" style="background-color:gold;">
        
-       <div style="width: 100%;">
-        <p:commandButton value="Buscar" update="display" icon="ui-icon-search" />
-        <h:outputText id="display" value=""   />
-       </div>       	
-        	<br/>
-        	
-        <p:fieldset id="availableCarsField" legend="Estacionamentos ">
-        	<p:dataTable var="car" value="">
-           
-            <p:column headerText="Placa">
-                <h:outputText value="" />
-            </p:column>
-
-            <p:column headerText="cpf">
-                <h:outputText value="" />
-            </p:column>
-
-            <p:column headerText="Nome do Cliente" >
-                <h:outputText value="" />
-            </p:column>
-
-            <p:column headerText="Veiculo">
-                <h:outputText value="" />
-            </p:column>
-             <p:column headerText="cor">
-                <h:outputText value="" />
-            </p:column>
-            
-            <p:column headerText="Hora">
-                <h:outputText value="" />
-            </p:column>
-            
-            <p:column headerText="Data">
-                <h:outputText value="" />
-            </p:column>
-           
-        </p:dataTable>
-    </p:fieldset>
-        
-    </h:panelGrid>
- 
-  	<p:commandButton value="Confirmar Registro de Não Cliente" update="display" icon="ui-icon-check" />
-    <h:outputText id="display" value="" />
- 
-	<p:button outcome="cadastroCliente.xhtml" value="Adcionar Cliente" icon="ui-icon-check"/>
+   <h:panelGrid >
    
+   	        
+        <p:outputLabel for="keyword" value="Busca: " style="font-weight:bold"/>
+        <p:inputText id="keyword"  value="#{clienteBean.keyword}" />
+             	       
+       <p:commandButton id="busca" actionListener="#{clienteBean.search}" value="Placa do Veículo: " icon="ui-icon-search"
+                        onclick="PrimeFaces.cleanWatermarks();" oncomplete="PrimeFaces.showWatermarks();" update="messages" />     	
+        	
+       	<p:commandButton id="btn"  value="Confirmar Registro de Não Cliente"  update="display" onclick="PF('dlg1').show();" icon="ui-icon-check" /> 
+   		<p:button outcome="cadastroCliente.xhtml" value="Adcionar Cliente" icon="ui-icon-check"/>
+              
+   </h:panelGrid>
  
-</h:form>
+ 	<p:dialog id="dial" header="Basic Dialog" widgetVar="dlg1" >
+ 	<h:panelGrid id="painel">
+    <h:outputText id="display" value=" Placa : #{clienteBean.keyword} " style="font-weight:bold" />
+ 
+ 	<p:separator/>
+ 	<p:clock id="disply" pattern="HH:mm dd.MM.yyyy " mode="server" />
  </h:panelGrid>
+    
+    <p:commandButton value="Imprimir" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+    <p:printer target="painel"  /> 
+    <p:separator/>
+    </p:commandButton>
+	
+	</p:dialog>
+  	</h:panelGrid>
+      
+</h:form>
      </ui:define>
     
   </ui:composition>

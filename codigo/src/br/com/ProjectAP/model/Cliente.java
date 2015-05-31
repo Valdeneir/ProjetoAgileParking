@@ -10,16 +10,18 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue
+	private int cpf;	
 	private String nome;
-	private String dataNascimento;
-	private int cpf;
-	private int rg;
-	private String veiculo;
-	private String cor;
-	private String email;
+	private String placa;
 	private String login;
 	private String senha;
-	private String cSenha;
+		
+	
+	@Override
+	public String toString() {
+		return "Cliente [nome=" + nome + ", cpf=" + cpf + ", placa=" + placa
+				+ ", login=" + login + ", senha=" + senha +  "]";
+	}
 	
 	
 	public String getNome() {
@@ -28,42 +30,14 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+	
 	public int getCpf() {
 		return cpf;
 	}
 	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
-	public int getRg() {
-		return rg;
-	}
-	public void setRg(int rg) {
-		this.rg = rg;
-	}
-	public String getVeiculo() {
-		return veiculo;
-	}
-	public void setVeiculo(String veiculo) {
-		this.veiculo = veiculo;
-	}
-	public String getCor() {
-		return cor;
-	}
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	public String getLogin() {
 		return login;
 	}
@@ -76,21 +50,15 @@ public class Cliente {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public String getcSenha() {
-		return cSenha;
+	public String getPlaca() {
+		return placa;
 	}
-	public void setcSenha(String cSenha) {
-		this.cSenha = cSenha;
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 	
 	
-	@Override
-	public String toString() {
-		return "Cliente [nome=" + nome + ", dataNascimento=" + dataNascimento
-				+ ", cpf=" + cpf + ", rg=" + rg + ", veiculo=" + veiculo
-				+ ", cor=" + cor + ", email=" + email + ", login=" + login
-				+ ", senha=" + senha + ", cSenha=" + cSenha + "]";
-	}
+	
 	
 	
 	

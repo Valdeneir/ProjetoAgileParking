@@ -24,7 +24,6 @@ public class HibernateUtility {
 		
 		configuration.addAnnotatedClass(Cliente.class);
 		
-		
 		configuration.configure();
 		ServiceRegistryBuilder serviceRegistryBuilder = new ServiceRegistryBuilder()
 				.applySettings(configuration.getProperties());
