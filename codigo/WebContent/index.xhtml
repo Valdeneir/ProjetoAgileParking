@@ -10,17 +10,16 @@
 </h:head>
 <h:body style="background-image:url('imagem/img12.png');background-size:cover;width:100%; height:100%;">
 	
-	<h:form prependId="false">	
+	<h:form >	
 		<table width="100%" >				
 			<tr>			
 				<td colspan="3" align="center">
 					<ui:insert name="cabecalho" >
 								
 				<h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
-				font-size:3cm; "> Agile Parking</h1>
+				font-size:3cm; "> Agile Parking</h1>	
 									
-					</ui:insert>	
-					<!-- <h:messages autoUpdate="true"/> -->				
+					</ui:insert>					
 					</td>				
 			</tr>	
 			
@@ -30,7 +29,7 @@
 				<ui:insert name="menu">
 				
 						<h:panelGrid columns="1" style="background-color:black;">
-							
+							<p:growl id="messages" showDetail="true" />
 							<p:tieredMenu style="width:200px; background-color:gold;">
 								<p:menuitem value="Menu" style="color:black;
 								text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
@@ -83,38 +82,45 @@
 						</h:panelGrid>
 					</ui:insert>
 					
-<!--  	<h:panelGrid columns="1" style="color:gold;background-color:black; ">
+	<h:panelGrid id="dadosUsu" columns="2" style="color:gold;background-color:black; ">
 
-			
-       	<h:selectOneMenu id="usu" label="senhaLogin" >
-          <f:selectItem itemLabel="Funcionario" itemValue="Administrador"/>
-          <f:selectItem itemLabel="Cliente" itemValue="Supervisor"/>
-        </h:selectOneMenu>
-						
-		<h:outputLabel for="nomeLogin" value="Login: " />
-		<p:inputText id="nomelogin" label="nameLogin" maxlength="10" size="18"/>
-		<h:outputLabel for="senhaLogin" value="Senha: " />
-		<p:password id="senhaLogin" label="Senha" maxlength="10" size="18" />
-		
-						
-		
-        
-        <h:commandButton value="OK" />
-        
+	
 
-					</h:panelGrid>
-				-->	
+	 <f:facet name="header">
+            <p:messages id="msgs" />
+     </f:facet>
+	
+		<h:outputText id="Usu" value="Usuario:" />  
+        <h:selectOneMenu id="senha" label="Senha" >
+        
+         <f:selectItem itemLabel="Funcionario" itemValue="Administrador"/>
+         <f:selectItem itemLabel="Cliente" itemValue="Supervisor"/>
+          
+        </h:selectOneMenu>  
+						
+		<p:outputLabel for="login" value="Login: " />
+		<p:inputText id="login" label="Login" maxlength="50" size="11" />
+		<p:outputLabel for="senhaL"  value="Senha: " />
+		<p:password id="senhaL" label="Senha" maxlength="10" size="11" />
+		
+		<p:commandButton value="OK" style="color:gold;background-color:black;" actionListener="#{clienteBean.verificarLogin}" update="dadosUsu" />
+       
+
+			</h:panelGrid>
+					
  			
 				</td>
 					
-				<td  width="80%">
+				<td>
 				
 				<ui:insert name="conteudo" >
 								
                
-                </ui:insert></td>
+                </ui:insert>
                 
-                <td width="100%" >  </td>
+                </td>
+                
+                
                 
 			</tr>
 		</table>

@@ -1,67 +1,76 @@
 package br.com.ProjectAP.dao;
 
-
-import org.hibernate.Session;
-import br.com.ProjectAP.hibernate.HibernateUtility;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import br.com.ProjectAP.conexao.Connect;
 import br.com.ProjectAP.model.Cliente;
-
-
-
+import br.com.ProjectAP.model.Estacionamento;
 
 public class Dao {
 	
-	private static Dao instance;
-	private Session sessao;
+	
 	
 	public Dao(){
 		
-	}
-	
-	public static Dao getInstance(){
-		if(instance == null)
-			instance = new Dao();
-		return instance;
-	}
-	
-	public <T> Object buscarPorPlaca(Class<T> clazz, String placa){
-		try{
-			sessao = HibernateUtility.getSession();
-			Object object = sessao.get(clazz, placa);
-			return object;
-		}catch(Exception e){
-			e.printStackTrace();
-			return null;
-		}finally{
-			sessao.close();
-		}
+	//	       this.connection = new ConnectionFactory().getConnection();
+		    
 	}
 	
 	
-	public void salvarObjeto(Cliente cliente){
 		
-
-		try{
-			sessao = HibernateUtility.getSession();
-			sessao.beginTransaction();
-			sessao.save(cliente);
-			sessao.getTransaction().commit();
+	 public void insertCliente(Cliente cliente) throws ClassNotFoundException, SQLException {
 			
-		}catch(Exception e){
-			sessao.beginTransaction().rollback();
-			e.printStackTrace();
-			System.out.println(e);
 			
-		}finally{
+			String sql = "insert into cliente(cpf, nome, placaVeiculo, username, senha) values(?,?,?,?,?);";
+			
 				
-			sessao.close();
+				PreparedStatement preparedStatement = Connect.getConnection().prepareStatement(sql);
+				preparedStatement.setString(1, cliente.getCpf());
+				preparedStatement.setString(2, cliente.getNome());
+				preparedStatement.setString(3, cliente.getPlacaVeiculo());
+				preparedStatement.setString(4, cliente.getUsername());
+				preparedStatement.setString(5, cliente.getSenha());
+				preparedStatement.execute();
+				preparedStatement.close();
+				
+				
+			}
+	 
+	 public void insertEst(Estacionamento est) throws ClassNotFoundException, SQLException {
 			
-		}
-	}
-	
-	
-	}
+			
+			String sql = "insert into estacionamentos(cnpj, nomeEstacionamento, local, telefone, valorDaVaga) values(?,?,?,?,?);";
+			
+				
+				PreparedStatement preparedStatement = Connect.getConnection().prepareStatement(sql);
+				preparedStatement.setString(1, est.getCnpj());
+				preparedStatement.setString(2, est.getNomeEstacionamento());
+				preparedStatement.setString(3, est.getLocal());
+				preparedStatement.setString(4, est.getTelefone());
+				preparedStatement.setDouble(5, est.getValorDaVaga());
+				preparedStatement.execute();
+				preparedStatement.close();
+					
+				
+			}
+	 
+	 public boolean verifica(String user, String sen){
+		 
+		 String sql =  "SELECT * FROM cliente WHERE username = user AND senha = sen";
+
+		 if (sql.equals(null)) {
+			
+			 
+			 return true;
+			 
+		}else{
+
+		return false;	
 		
-	
-	
+		}
+				 
+	 
+	 }
+	}
 	
 

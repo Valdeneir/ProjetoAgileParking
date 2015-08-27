@@ -5,55 +5,50 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
-      <head> </head>
       
+    
   <ui:composition template="/index.xhtml">
   
     <ui:define name="conteudo" >
-    
-    
-   	<script type="text/javascript">
-
-  	</script>
-    
       <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
 				font-size:16;">Registrar Entrada</h1>
-	
-	<h:form>	
-	<p:messages id="messages" showDetail="true"/>		
- 	<h:panelGrid id="dadosUsuario" columns="3" style="background-color:gold;">
-       
-   <h:panelGrid >
+				
+      <h:panelGrid style="background-color:gold;" >
+        
+   <h:form >
+    <p:messages id="messages" showDetail="true"/>
+ 
+ <h:panelGrid columns="3" cellpadding="5" style="margin-bottom:10px">
+        <p:outputLabel value="Placa do Veículo: "/>
+        <p:inputText id="placa" value="#{clienteBean.placa}" label="placa"/>
+        <p:watermark for="placa" id="watermark" />
+        
+ </h:panelGrid> 
+ 
+        <p:commandButton id="display" actionListener="#{clienteBean.search}" 
+        onclick="PrimeFaces.cleanWatermarks();" value="Consultar" update="messages" icon="ui-icon-search" />
+        
+        <p:commandButton value="Confirmar Registro" update="display" icon="ui-icon-check" onclick="PF('dlg1').show();"/>
+		<p:button outcome="cadastroCliente.xhtml"  value="Adicionar Cliente" icon="ui-icon-check"/>
    
-   	        
-        <p:outputLabel for="keyword" value="Busca: " style="font-weight:bold"/>
-        <p:inputText id="keyword"  value="#{clienteBean.keyword}" />
-             	       
-       <p:commandButton id="busca" actionListener="#{clienteBean.search}" value="Placa do Veículo: " icon="ui-icon-search"
-                        onclick="PrimeFaces.cleanWatermarks();" oncomplete="PrimeFaces.showWatermarks();" update="messages" />     	
-        	
-       	<p:commandButton id="btn"  value="Confirmar Registro de Não Cliente"  update="display" onclick="PF('dlg1').show();" icon="ui-icon-check" /> 
-   		<p:button outcome="cadastroCliente.xhtml" value="Adcionar Cliente" icon="ui-icon-check"/>
-              
-   </h:panelGrid>
- 
- 	<p:dialog id="dial" header="Basic Dialog" widgetVar="dlg1" >
- 	<h:panelGrid id="painel">
-    <h:outputText id="display" value=" Placa : #{clienteBean.keyword} " style="font-weight:bold" />
- 
- 	<p:separator/>
- 	<p:clock id="disply" pattern="HH:mm dd.MM.yyyy " mode="server" />
+</h:form>
+
  </h:panelGrid>
-    
-    <p:commandButton value="Imprimir" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
-    <p:printer target="painel"  /> 
-    <p:separator/>
-    </p:commandButton>
+ 
+ 	<p:dialog  header="Registro" widgetVar="dlg1" >
+ 	 
+ 	 <h:panelGrid id="print">
+ 	 
+    	<h:outputText value="#{clienteBean.placa}"/>    	
+		
+	</h:panelGrid>
+	
+	<p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+    	<p:printer target="print" />
+	</p:commandButton>
 	
 	</p:dialog>
-  	</h:panelGrid>
-      
-</h:form>
+
      </ui:define>
     
   </ui:composition>

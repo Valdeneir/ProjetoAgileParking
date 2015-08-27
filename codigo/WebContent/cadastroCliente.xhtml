@@ -10,38 +10,33 @@
   <ui:composition template="/index.xhtml">
   
     <ui:define name="conteudo" >
-  			 
+   
       <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
 				font-size:16;">Adicionar Cliente</h1>
+			
+	<h:form>
 				
-				
-	
-	<h:form id="form"  >
-				
-      <h:panelGrid  columns="2" style="background-color:gold;">
+      <h:panelGrid id="dadosUsuario" columns="2"  style="background-color:gold;  " >
         
-        <h:outputLabel for="nome" value="Nome:"/>
-        <p:inputText id="nome" label="nome"  value="#{clienteBean.cliente.nome}" maxlength="100" size="50"/>
-            
-        <h:outputLabel for="cpf" value="CPF:"/>
-        <p:inputText id="cpf" label="cpf"  value="#{clienteBean.cliente.cpf}" maxlength="45" size="50"/>
-       
-      	<h:outputLabel for="placa" value="Placa do Veículo:"/>
-        <p:inputText id="placa" label="placa"  value="#{clienteBean.cliente.placa}" maxlength="45" size="50"/>
+        <p:outputLabel value="Nome:"/>
+        <p:inputText id="nome" name="nome" value="#{clienteBean.cliente.nome}" maxlength="100" size="50"/>
+        <p:outputLabel value="CPF:"/>
+        <p:inputText id="cpf" name="cpf" value="#{clienteBean.cliente.cpf}" size="50" mask="999.999.999-99"/>
+      	<p:outputLabel value="Placa do Veiculo:"/>
+        <p:inputMask id="placaV"  name="cor" value="#{clienteBean.cliente.placaVeiculo}" maxlength="14" size="50" mask="aaa9999"/>
+        <p:outputLabel value="Username:"/>
+        <p:inputMask id="Username"  name="user" value="#{clienteBean.cliente.username}" maxlength="14" size="50" />
+        <p:outputLabel value="Senha:"/>
+        <p:inputMask id="senha"  name="senha" value="#{clienteBean.cliente.senha}" maxlength="14" size="50" />
       
-      	<h:outputLabel for="login" value="Login:"/>
-        <p:inputText id="login" label="login"  value="#{clienteBean.cliente.login}" maxlength="50" size="50"/>
-      
-        <h:outputLabel for="senha" value="Senha:"/>
-        <p:password id="senha" label="senha"  value="#{clienteBean.cliente.senha}" maxlength="45" size="50"/>
+      <h:commandButton value="Salvar" icon="ui-icon-check" actionListener="#{clienteBean.cadastrar}"/>
                     
+        	
       </h:panelGrid>
-        	
-       <h:commandButton value="Salvar" icon="ui-icon-check" actionListener="#{clienteBean.cadastrar}" />
-        	
+      <br/>
         	
       	</h:form>
-    
+      
     </ui:define>
     
   </ui:composition>

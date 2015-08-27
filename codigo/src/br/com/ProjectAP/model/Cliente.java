@@ -10,18 +10,11 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue
-	private int cpf;	
+	private String cpf;
 	private String nome;
-	private String placa;
-	private String login;
+	private String placaVeiculo;
+	private String username;
 	private String senha;
-		
-	
-	@Override
-	public String toString() {
-		return "Cliente [nome=" + nome + ", cpf=" + cpf + ", placa=" + placa
-				+ ", login=" + login + ", senha=" + senha +  "]";
-	}
 	
 	
 	public String getNome() {
@@ -31,18 +24,26 @@ public class Cliente {
 		this.nome = nome;
 	}
 	
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	
-	public String getLogin() {
-		return login;
+	
+	public String getPlacaVeiculo() {
+		return placaVeiculo;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+	public void setPlacaVeiculo(String placaVeiculo) {
+		this.placaVeiculo = placaVeiculo;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getSenha() {
 		return senha;
@@ -50,16 +51,12 @@ public class Cliente {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public String getPlaca() {
-		return placa;
-	}
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
 	
 	
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Cliente [nome=" + nome + ", cpf=" + cpf + ", placaVeiculo=" + placaVeiculo + ", username=" + username
+				+ ", senha=" + senha + "]";
+	}	
+		
 }
