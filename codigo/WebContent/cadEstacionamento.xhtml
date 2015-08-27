@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+      
+  <ui:composition template="/index.xhtml">
+  
+    <ui:define name="conteudo" >
+   
+      <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
+				font-size:16;">Cadastrar Estacionamento</h1>
+				
+			
+	<h:form>
+				
+      <h:panelGrid id="dadosUsuario" columns="1"  style="background-color:gold;">
+      
+      <f:facet name="header">
+            <p:messages id="msgs" />
+        </f:facet>
+      
+        
+        <p:outputLabel for="nomeE" value="Nome do Estacionamento:"/>
+        <p:inputText id="nomeE" name="nomeE" value="#{estacionamentoBean.est.nomeEstacionamento}" required="true" maxlength="100" size="50"/>
+        <p:outputLabel for="local" value="Local:"/>
+        <p:inputText id="local" name="local" value="#{estacionamentoBean.est.local}" required="true" size="50"/>
+      	<p:outputLabel for="cnpj" value="CNPJ:"/>
+        <p:inputMask id="cnpj"  name="cnpj" value="#{estacionamentoBean.est.cnpj}" required="true" maxlength="14" size="50" mask="999.999.999-99"/>
+        <p:outputLabel for="tel" value="Telefone:"/>
+        <p:inputMask id="tel"  name="tel" value="#{estacionamentoBean.est.telefone}" required="true"  maxlength="20" size="50" />
+        <p:outputLabel for="vvaga" value="Valor da vaga/h"/>
+        <p:inputMask id="vvaga"  name="vvaga" value="#{estacionamentoBean.est.valorDaVaga}" required="true" maxlength="14" size="50"/>
+                                  
+        <p:commandButton value="Salvar" icon="ui-icon-check" actionListener="#{estacionamentoBean.cadEstacionamento}"  update="dadosUsuario"  />
+        	
+      </h:panelGrid>
+      
+      <br/>
+        	
+      	</h:form>
+      
+    </ui:define>
+    
+  </ui:composition>
+</html>
