@@ -59,6 +59,12 @@ public class Reserva {
 	public void setData(String data) {
 		this.data = data;
 	}
+	@Override
+	public String toString() {
+		return "Reserva [id=" + id + ", cidade=" + cidade + ", tipoReserva=" + tipoReserva + ", nomeUsu=" + nomeUsu
+				+ ", email=" + email + ", placa=" + placa + ", data=" + data + "]";
+	}
+	
 	
 	
 }

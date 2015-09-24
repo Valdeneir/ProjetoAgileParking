@@ -26,8 +26,14 @@
         
         <p:outputLabel for="nomeE" value="Nome do Estacionamento:"/>
         <p:inputText id="nomeE" name="nomeE" value="#{estacionamentoBean.est.nomeEstacionamento}" required="true" maxlength="100" size="50"/>
-        <p:outputLabel for="local" value="Local:"/>
-        <p:inputText id="local" name="local" value="#{estacionamentoBean.est.local}" required="true" size="50"/>
+        <p:outputLabel for="cidadeE" value="Cidade:"/>
+        <p:inputText id="cidadeE" name="cidadeE" value="#{estacionamentoBean.est.cidade}" required="true" size="50"/>
+        <p:outputLabel for="rua" value="Rua:"/>
+        <p:inputText id="rua" name="rua" value="#{estacionamentoBean.est.rua}" required="true" size="50"/>
+        <p:outputLabel for="num" value="Nº:"/>
+        <p:inputText id="num" name="num" value="#{estacionamentoBean.est.numero}" required="true" size="50"/>
+        <p:outputLabel for="comp" value="Complemento:"/>
+        <p:inputText id="comp" name="comp" value="#{estacionamentoBean.est.complemento}" required="true" size="50"/>
       	<p:outputLabel for="cnpj" value="CNPJ:"/>
         <p:inputMask id="cnpj"  name="cnpj" value="#{estacionamentoBean.est.cnpj}" required="true" maxlength="14" size="50" mask="999.999.999-99"/>
         <p:outputLabel for="tel" value="Telefone:"/>

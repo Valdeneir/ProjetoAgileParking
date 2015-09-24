@@ -6,6 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
       
+   
       
   <ui:composition template="/index.xhtml">
   
@@ -15,68 +16,72 @@
 				font-size:16;">Reserva de Vaga</h1>
 			
 	<h:form>
-				
+	
+	
       <h:panelGrid id="reserva" columns="2"  style="background-color:gold;  " >
+       
+        <f:facet name="header">
+            <p:message id="cid" for="cidade"/>
+     </f:facet>
         
-        <p:outputLabel value="Cidade:"/>
-        <p:inputText id="cidade" name="cidade" value="#{clienteBean.cidade}" maxlength="100" size="30"/>
+        <p:outputLabel for="cidade"  value="Cidade:"/>
+        <p:inputText id="cidade" name="cidade"  value="#{clienteBean.reserva.cidade}" required="true" maxlength="100" size="30">
+	
+	<f:ajax event="blur"  listener="#{clienteBean.verificarCidade}" />
+
+		  </p:inputText>
         
         <p:outputLabel for="tipo" value="Tipo de Reserva:" />
-        <p:selectOneRadio id="tipo" value="#{clienteBean.tipo}">
+        <p:selectOneRadio id="tipo" value="#{clienteBean.reserva.tipoReserva}" required="true">
             <f:selectItem itemLabel="Dia" itemValue="Dia" />
             <f:selectItem itemLabel="Mensal" itemValue="Mensal" />
             <f:selectItem itemLabel="Anual" itemValue="Anual" />
         </p:selectOneRadio>
         
         <p:outputLabel value="Nome do Usuario:"/>
-        <p:inputText id="nomeUsuario" name="nomeUsuario" size="30" value="#{clienteBean.nome}"/>
+        <p:inputText id="nomeUsuario" name="nomeUsuario" size="30" value="#{clienteBean.reserva.nomeUsu}" required="true"/>
+      	
       	<p:outputLabel value="Email:"/>
-        <p:inputText id="emailUsu"  name="emailUsu" size="30" value="#{clienteBean.email}"/>
+        <p:inputText id="emailUsu"  name="emailUsu" size="30" value="#{clienteBean.reserva.email}" required="true"/>
+        
         <p:outputLabel value="Placa do Carro: "/>
-        <p:inputMask id="placaC"  name="placaC"  maxlength="14" size="30" mask="aaa9999" value="#{clienteBean.placa2}"/>
+        <p:inputMask id="placaC"  name="placaC"  maxlength="14" size="30" mask="aaa9999" value="#{clienteBean.reserva.placa}" required="true"/>
+        
         <p:outputLabel for="data" value="Data:" />
-        <p:calendar id="data"  pattern="dd-MM-yyyy" mask="true" value="#{clienteBean.data}"/>
+        <p:inputMask id="data"  mask="99/99/9999" value="#{clienteBean.reserva.data}" required="true"/>
  
-         </h:panelGrid>
-      <p:commandButton value="Verificar" update="tela" icon="ui-icon-check" onclick="PF('dlg').show()" >
+       </h:panelGrid>
+         
+      <p:commandButton value="Verificar" update="tela" icon="ui-icon-check" onclick="PF('dlg').show()" />
+              
+     <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Values" showEffect="clip">
       
-        </p:commandButton>	
-     
-      
-     
-          
-          <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Values" showEffect="clip">
-      
-       <p:panelGrid columns="2" id="tela" columnClasses="label,value">
+      <p:panelGrid columns="2" id="tela" >
      
      		<h:outputText value="Cidade: " />
-            <h:outputText value="#{clienteBean.cidade}" />
+            <h:outputText value="#{clienteBean.reserva.cidade}" />
  
             <h:outputText value="Tipo de Reserva: " />
-            <h:outputText value="#{clienteBean.tipo}"/>
+            <h:outputText value="#{clienteBean.reserva.tipoReserva}"/>
  
             <h:outputText value="Nome: " />
-            <h:outputText value="#{clienteBean.nome}" />
+            <h:outputText value="#{clienteBean.reserva.nomeUsu}" />
  
             <h:outputText value="email: " />
-            <h:outputText value="#{clienteBean.email}" />
+            <h:outputText value="#{clienteBean.reserva.email}" />
             
             <h:outputText value="Placa do Carro: " />
-            <h:outputText value="#{clienteBean.placa2}" />
+            <h:outputText value="#{clienteBean.reserva.placa}" />
             
             <h:outputText value="Data: " />
-            <h:outputText value="#{clienteBean.data}" />
+            <h:outputText value="#{clienteBean.reserva.data}" />
      
      </p:panelGrid>
       
       <h:commandButton value="confirmar" actionListener="#{clienteBean.realizarReserva}" />
       
-       	
-      
       </p:dialog>
-          
-       
-            	
+           	
       	</h:form>
       
     </ui:define>

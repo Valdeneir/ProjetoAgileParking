@@ -41,7 +41,7 @@
 								 
 																									
 									<p:menuitem value="Reserva de Vaga" style="color:black;
-								text-shadow:gold 1px -1px 2px" icon="ui-icon-tag" />
+								text-shadow:gold 1px -1px 2px" icon="ui-icon-tag" outcome="reservaDeVaga.xhtml" />
 								
 								</p:submenu>
 								
@@ -84,17 +84,15 @@
 					
 	<h:panelGrid id="dadosUsu" columns="2" style="color:gold;background-color:black; ">
 
-	
-
 	 <f:facet name="header">
-            <p:messages id="msgs" />
+            <p:messages id="msgs" for="dadosUsu"/>
      </f:facet>
 	
 		<h:outputText id="Usu" value="Usuario:" />  
         <h:selectOneMenu id="senha" label="Senha" >
         
-         <f:selectItem itemLabel="Funcionario" itemValue="Administrador"/>
-         <f:selectItem itemLabel="Cliente" itemValue="Supervisor"/>
+         <f:selectItem itemLabel="Funcionario" itemValue="Funcionario"/>
+         <f:selectItem itemLabel="Cliente" itemValue="Cliente"/>
           
         </h:selectOneMenu>  
 						
