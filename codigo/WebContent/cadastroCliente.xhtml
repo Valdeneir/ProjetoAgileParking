@@ -16,21 +16,30 @@
 			
 	<h:form>
 				
-      <h:panelGrid id="dadosUsuario" columns="2"  style="background-color:gold;  " >
+      <h:panelGrid id="dadosUsuario" columns="1"  style="background-color:gold;  " >
+        
+         <f:facet name="header">
+            <p:messages id="messagem" />
+        </f:facet>
+      
         
         <p:outputLabel value="Nome:"/>
-        <p:inputText id="nome" name="nome" value="#{clienteBean.cliente.nome}" maxlength="100" size="50"/>
+       <h:inputHidden value="#{clienteBean.cliente.id}"/>
+        <p:inputText id="nome" name="nome" value="#{clienteBean.cliente.nome}" required="true" maxlength="100" size="50"/>
         <p:outputLabel value="CPF:"/>
-        <p:inputText id="cpf" name="cpf" value="#{clienteBean.cliente.cpf}" size="50" mask="999.999.999-99"/>
+        <p:inputMask id="cpf" name="cpf" value="#{clienteBean.cliente.cpf}" required="true" size="50" mask="999.999.999-99">
+              <p:ajax event="blur" listener="#{clienteBean.verificarCpf}"
+                                            process="cpf" />  
+		</p:inputMask>
       	<p:outputLabel value="Placa do Veiculo:"/>
-        <p:inputMask id="placaV"  name="cor" value="#{clienteBean.cliente.placaVeiculo}" maxlength="14" size="50" mask="aaa9999"/>
+        <p:inputMask id="placaV"  name="cor" value="#{clienteBean.cliente.placaVeiculo}"  required="true" maxlength="14" size="50" mask="aaa9999"/>
         <p:outputLabel value="Username:"/>
-        <p:inputMask id="Username"  name="user" value="#{clienteBean.cliente.username}" maxlength="14" size="50" />
+        <p:inputMask id="Username"  name="user" value="#{clienteBean.cliente.username}" required="true" maxlength="14" size="50" />
         <p:outputLabel value="Senha:"/>
-        <p:inputMask id="senha"  name="senha" value="#{clienteBean.cliente.senha}" maxlength="14" size="50" />
+        <p:inputMask id="senha"  name="senha" value="#{clienteBean.cliente.senha}" required="true" maxlength="14" size="50" />
       
       <h:commandButton value="Salvar" icon="ui-icon-check" actionListener="#{clienteBean.cadastrar}"/>
-                    
+      <p:button value="Voltar" outcome="manterCliente.xhtml"/>              
         	
       </h:panelGrid>
       <br/>

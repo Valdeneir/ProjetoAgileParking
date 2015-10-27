@@ -17,49 +17,113 @@
 			
 	<h:form>
 	
-	
       <h:panelGrid id="reserva" columns="2"  style="background-color:gold;  " >
-       
-        <f:facet name="header">
-            <p:message id="cid" for="cidade"/>
-     </f:facet>
-        
-        <p:outputLabel for="cidade"  value="Cidade:"/>
-        <p:inputText id="cidade" name="cidade"  value="#{clienteBean.reserva.cidade}" required="true" maxlength="100" size="30">
+      
+      <p:dialog widgetVar="dlg3">
+	<p:dataTable var="estacionamento" value="#{estacionamentoBean.buscaEstacionamento}"  rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
 	
-	<f:ajax event="blur"  listener="#{clienteBean.verificarCidade}" />
-
-		  </p:inputText>
-        
+		
+  <p:column headerText="CNPJ">
+    <h:outputText value="#{estacionamento.cnpj}"/>
+  </p:column>
+  <p:column headerText="Nome" >
+  
+    <h:outputText value="#{estacionamento.nomeEstacionamento}"/>
+  </p:column> 
+  
+  <p:column headerText="cidade"  filterBy="#{estacionamento.cidade}" footerText="contains" filterMatchMode="contains">
+  
+    <h:outputText value="#{estacionamento.cidade}" />
+  </p:column> 
+      
+  <p:column headerText="Endereço">
+    <h:outputText value="#{estacionamento.rua},#{estacionamento.numero}" />
+  </p:column>    
+  
+  <p:column headerText="Valor da Vaga/dia">
+    <h:outputText value="#{estacionamento.valorDaVaga}"/>
+  </p:column>
+  
+</p:dataTable>
+	</p:dialog>
+	
+       <h:commandLink  value="Lista de Estacionamentos" onclick="PF('dlg3').show()" />
+       
+		<p:outputLabel for="cnpjR"  value="CNPJ:"/>
+        <p:inputMask id="cnpjR" name="cnpjR"  value="#{clienteBean.reserva.cnpjR}" required="true" maxlength="100" size="30" mask="999.999.999-99">
+	
+	
+		  </p:inputMask>
+		     
         <p:outputLabel for="tipo" value="Tipo de Reserva:" />
         <p:selectOneRadio id="tipo" value="#{clienteBean.reserva.tipoReserva}" required="true">
             <f:selectItem itemLabel="Dia" itemValue="Dia" />
             <f:selectItem itemLabel="Mensal" itemValue="Mensal" />
             <f:selectItem itemLabel="Anual" itemValue="Anual" />
+            
+            <f:ajax event="blur"  listener="#{clienteBean.calcularValor}" />
+
         </p:selectOneRadio>
         
         <p:outputLabel value="Nome do Usuario:"/>
-        <p:inputText id="nomeUsuario" name="nomeUsuario" size="30" value="#{clienteBean.reserva.nomeUsu}" required="true"/>
-      	
+        <p:inputText id="nomeUsuario" name="nomeUsuario" size="30" value="#{clienteBean.reserva.nomeUsu}" required="true">
+      	            <f:ajax event="blur" listener="#{clienteBean.calcularValor}" />
+      	</p:inputText>
       	<p:outputLabel value="Email:"/>
         <p:inputText id="emailUsu"  name="emailUsu" size="30" value="#{clienteBean.reserva.email}" required="true"/>
         
-        <p:outputLabel value="Placa do Carro: "/>
+        <p:outputLabel value="Placa do Carro:"/>
         <p:inputMask id="placaC"  name="placaC"  maxlength="14" size="30" mask="aaa9999" value="#{clienteBean.reserva.placa}" required="true"/>
         
         <p:outputLabel for="data" value="Data:" />
         <p:inputMask id="data"  mask="99/99/9999" value="#{clienteBean.reserva.data}" required="true"/>
  
+ 	    <p:commandLink  value="Imprimir Comprovante" onclick="PF('dlg2').show()" />
+ 	
        </h:panelGrid>
          
-      <p:commandButton value="Verificar" update="tela" icon="ui-icon-check" onclick="PF('dlg').show()" />
+      <p:commandButton  value="Verificar" update="tela" actionListener="#{clienteBean.verificarCidade}" icon="ui-icon-check" onclick="PF('dlg').show()" />
+      
+      <p:dialog widgetVar="dlg2" showEffect="clip">
+      
+       <p:panelGrid columns="2" id="imprime" >
+     
+     		<h:outputText value="CNPJ: " />
+            <h:outputText value="#{clienteBean.reserva.cnpjR}" />
+ 
+            <h:outputText value="Valor: " />
+            <h:outputText value="#{clienteBean.resultValor}"/>
+ 
+            <h:outputText value="Nome do Usuario: " />
+            <h:outputText value="#{clienteBean.reserva.nomeUsu}" />
+             
+            <h:outputText value="Placa do Carro: " />
+            <h:outputText value="#{clienteBean.reserva.placa}" />
+            
+            <h:outputText value="Data: " />
+            <h:outputText value="#{clienteBean.reserva.data}" />
+     
+     </p:panelGrid>
+      
+      <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+    	<p:printer target="imprime" />
+	</p:commandButton>
+     
+      </p:dialog>  
+        
               
-     <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Values" showEffect="clip">
+     <p:dialog modal="true" resizable="false" widgetVar="dlg" header="Verificação dos Dados" showEffect="clip">
       
       <p:panelGrid columns="2" id="tela" >
+      <f:facet name="header">
+            <p:messages id="msgs" />
+        </f:facet>
      
-     		<h:outputText value="Cidade: " />
-            <h:outputText value="#{clienteBean.reserva.cidade}" />
+     		<h:outputText value="CNPJ: " />
+            <h:outputText value="#{clienteBean.reserva.cnpjR}" />
  
             <h:outputText value="Tipo de Reserva: " />
             <h:outputText value="#{clienteBean.reserva.tipoReserva}"/>
@@ -77,7 +141,7 @@
             <h:outputText value="#{clienteBean.reserva.data}" />
      
      </p:panelGrid>
-      
+           
       <h:commandButton value="confirmar" actionListener="#{clienteBean.realizarReserva}" />
       
       </p:dialog>

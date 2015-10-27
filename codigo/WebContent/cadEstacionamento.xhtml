@@ -17,7 +17,7 @@
 			
 	<h:form>
 				
-      <h:panelGrid id="dadosUsuario" columns="1"  style="background-color:gold;">
+      <h:panelGrid id="dadosUsuario" columns="2"  style="background-color:gold;">
       
       <f:facet name="header">
             <p:messages id="msgs" />
@@ -33,19 +33,27 @@
         <p:outputLabel for="num" value="Nº:"/>
         <p:inputText id="num" name="num" value="#{estacionamentoBean.est.numero}" required="true" size="50"/>
         <p:outputLabel for="comp" value="Complemento:"/>
-        <p:inputText id="comp" name="comp" value="#{estacionamentoBean.est.complemento}" required="true" size="50"/>
+        <p:inputText id="comp" name="comp" value="#{estacionamentoBean.est.complemento}" size="50"/>
       	<p:outputLabel for="cnpj" value="CNPJ:"/>
         <p:inputMask id="cnpj"  name="cnpj" value="#{estacionamentoBean.est.cnpj}" required="true" maxlength="14" size="50" mask="999.999.999-99"/>
         <p:outputLabel for="tel" value="Telefone:"/>
         <p:inputMask id="tel"  name="tel" value="#{estacionamentoBean.est.telefone}" required="true"  maxlength="20" size="50" />
-        <p:outputLabel for="vvaga" value="Valor da vaga/h"/>
+        <p:outputLabel for="vvaga" value="Valor da vaga/Dia"/>
         <p:inputMask id="vvaga"  name="vvaga" value="#{estacionamentoBean.est.valorDaVaga}" required="true" maxlength="14" size="50"/>
-                                  
-        <p:commandButton value="Salvar" icon="ui-icon-check" actionListener="#{estacionamentoBean.cadEstacionamento}"  update="dadosUsuario"  />
+          
+        <p:outputLabel for="latitude" value="Latitude:"/>
+        <p:inputText id="latitude" name="latitude" value="#{estacionamentoBean.est.latitude}" required="true" size="50"/>  
+        
+        <p:outputLabel for="longitude" value="Longitude:"/>
+        <p:inputText id="longitude" name="longitude" value="#{estacionamentoBean.est.longitude}" required="true" size="50"/>  
+        
+        <p:commandButton onclick="javascript:teste1();" value="Pesquisar Coordenadas"/>
+          
         	
       </h:panelGrid>
       
-      <br/>
+            <p:commandButton value="Salvar" icon="ui-icon-check" actionListener="#{estacionamentoBean.cadEstacionamento}"  update="dadosUsuario"  />
+    
         	
       	</h:form>
       

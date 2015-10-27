@@ -10,6 +10,7 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue
+	private long id;
 	private String cpf;
 	private String nome;
 	private String placaVeiculo;
@@ -17,6 +18,13 @@ public class Cliente {
 	private String senha;
 	
 	
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}
