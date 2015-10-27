@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    
+  <ui:composition template="/index.xhtml">
+  
+    <ui:define name="conteudo" >
+      <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
+				font-size:16;">Login</h1>
+				
+      <h:panelGrid style="background-color:gold;" >
+        
+   <h:form >
+            <p:messages id="mess"/>
+ 
+ <h:panelGrid id="dadosUsu" columns="2" style="color:gold;background-color:black; ">
+        
+            
+  
+	
+		<h:outputText id="Usu" value="Usuario:" />  
+        <h:selectOneMenu id="selecao" value="#{clienteBean.selecao}" >
+        
+         <f:selectItem itemLabel="Funcionario" itemValue="Funcionario"/>
+         <f:selectItem itemLabel="Cliente" itemValue="Cliente"/>
+          
+        </h:selectOneMenu>  
+						
+		<p:outputLabel for="login" value="Username: " />
+		<p:inputText id="login" nome="username" value="#{clienteBean.username}" maxlength="50" size="11" />
+		<p:outputLabel for="senha"  value="Senha: " />
+		<p:password id="senha" nome="senha" value="#{clienteBean.senha}" maxlength="10" size="11" />
+		
+		<p:commandButton value="OK" id="dadoU" style="color:gold;background-color:black;" actionListener="#{clienteBean.verificarLogin}" update="mess" />
+       
+
+			</h:panelGrid>
+   
+</h:form>
+
+ </h:panelGrid>
+ 
+ 
+
+     </ui:define>
+    
+  </ui:composition>
+</html>
