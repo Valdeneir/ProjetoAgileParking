@@ -24,7 +24,7 @@
   
 	
 		<h:outputText id="Usu" value="Usuario:" />  
-        <h:selectOneMenu id="selecao" value="#{clienteBean.selecao}" >
+        <h:selectOneMenu id="selecao" value="#{autencicacaoLogin.tipo}" >
         
          <f:selectItem itemLabel="Funcionario" itemValue="Funcionario"/>
          <f:selectItem itemLabel="Cliente" itemValue="Cliente"/>
@@ -32,11 +32,13 @@
         </h:selectOneMenu>  
 						
 		<p:outputLabel for="login" value="Username: " />
-		<p:inputText id="login" nome="username" value="#{clienteBean.username}" maxlength="50" size="11" />
-		<p:outputLabel for="senha"  value="Senha: " />
-		<p:password id="senha" nome="senha" value="#{clienteBean.senha}" maxlength="10" size="11" />
+		<p:inputText id="login" required="true" nome="username" value="#{autencicacaoLogin.cLogado.username}" maxlength="50" size="11" >
 		
-		<p:commandButton value="OK" id="dadoU" style="color:gold;background-color:black;" actionListener="#{clienteBean.verificarLogin}" update="mess" />
+		</p:inputText>
+		<p:outputLabel for="senha"  value="Senha: " />
+		<p:password id="senha" required="true" nome="senha" value="#{autencicacaoLogin.cLogado.senha}" maxlength="10" size="11" />
+		
+		<p:commandButton value="OK" id="dadoU" style="color:gold;background-color:black;" actionListener="#{autencicacaoLogin.entrar}" update="mess" />
        
 
 			</h:panelGrid>

@@ -121,8 +121,8 @@ public class Dao {
 						 estacionamento.setComplemento(rs.getString("complemento"));
 						 estacionamento.setTelefone(rs.getString("telefone"));
 						 estacionamento.setValorDaVaga(rs.getDouble("valorDaVaga"));
-						 estacionamento.setLatitude(rs.getLong("latitude"));
-						 estacionamento.setLongitude(rs.getLong("longitude"));
+						 estacionamento.setLatitude(rs.getFloat("latitude"));
+						 estacionamento.setLongitude(rs.getFloat("longitude"));
 						 est.add(estacionamento);
 						 
 						
@@ -270,16 +270,19 @@ public class Dao {
 		
 	public boolean verificaUSU(String tipo, String user, String sen) throws SQLException{
 		 
-		 
+		 System.out.println(tipo+ user + sen);
+
 		 System.out.println(user + sen);
 		 
-			String sql1 =  "SELECT * FROM cliente";	
+			
 
-			String sql =  "SELECT * FROM funcionario";	
-		 
-			if(tipo.equals("funcionario")){
 				
-				if(tipo.equals("cliente")){
+			
+		 
+			if(tipo.equals("Funcionario")){
+				
+				String sql =  "SELECT * FROM funcionario";
+				
 					 PreparedStatement pst = Connect.getConnection().prepareStatement(sql);
 						ResultSet rs = pst.executeQuery();
 
@@ -297,11 +300,12 @@ public class Dao {
 				
 			}
 			
-			if(tipo.equals("cliente")){
-				 PreparedStatement pst = Connect.getConnection().prepareStatement(sql1);
+			if(tipo.equals("Cliente")){
+				String sql =  "SELECT * FROM cliente";
+				 PreparedStatement pst = Connect.getConnection().prepareStatement(sql);
 					ResultSet rs = pst.executeQuery();
 
-				
+						
 			while (rs.next()) {
 				  String username = rs.getString("username");
 				  String senha = rs.getString("senha");
@@ -314,14 +318,19 @@ public class Dao {
 			
 			}
 	
-		}
+		
 						
 			
 		return false;
 		
 	
 	 }
-	
+
+	public void autenticar(String tipo, String user, String sen){
+		
+		
+		
+	}
 
 
 }

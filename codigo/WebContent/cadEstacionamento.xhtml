@@ -35,9 +35,9 @@
         <p:outputLabel for="comp" value="Complemento:"/>
         <p:inputText id="comp" name="comp" value="#{estacionamentoBean.est.complemento}" size="50"/>
       	<p:outputLabel for="cnpj" value="CNPJ:"/>
-        <p:inputMask id="cnpj"  name="cnpj" value="#{estacionamentoBean.est.cnpj}" required="true" maxlength="14" size="50" mask="999.999.999-99"/>
+        <p:inputMask id="cnpj"  name="cnpj" value="#{estacionamentoBean.est.cnpj}" required="true" maxlength="14" size="50" mask="99.999.999/9999-99"/>
         <p:outputLabel for="tel" value="Telefone:"/>
-        <p:inputMask id="tel"  name="tel" value="#{estacionamentoBean.est.telefone}" required="true"  maxlength="20" size="50" />
+        <p:inputMask id="tel"  name="tel" value="#{estacionamentoBean.est.telefone}" required="true"  maxlength="20" size="50" mask="(99) 9999-9999" />
         <p:outputLabel for="vvaga" value="Valor da vaga/Dia"/>
         <p:inputMask id="vvaga"  name="vvaga" value="#{estacionamentoBean.est.valorDaVaga}" required="true" maxlength="14" size="50"/>
           

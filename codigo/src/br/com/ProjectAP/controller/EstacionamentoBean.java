@@ -23,6 +23,7 @@ public class EstacionamentoBean {
 	Dao dao = new Dao();
 	private MapModel simpleModel;
 	
+		
 	public void cadEstacionamento() throws ClassNotFoundException, SQLException{
 		
 		dao.insertEst(est);
@@ -62,7 +63,6 @@ public class EstacionamentoBean {
 	return est;
 }
 	
-	
 
 	public void setEst(Estacionamento est) {
 	this.est = est;
@@ -71,11 +71,36 @@ public class EstacionamentoBean {
 	    @PostConstruct
 	    public void init() {
 	        simpleModel = new DefaultMapModel();
-	         	
-	      	        
+	        System.out.println("chegou aqui 0");
+
+	        
+	        System.out.println(getEst().getLatitude() + est.getLongitude());
+	        
+	        	
+	      List<Estacionamento> estacionamento;
+		try {
+			estacionamento = dao.buscaEstacionamento();
+		
+	      for (Estacionamento dados : estacionamento) {
+	    	  
+		        System.out.println(dados.getLatitude() +" " + dados.getLongitude());
+		        System.out.println("chegou aqui 1");
+
+	 	      
+	        LatLng cord = new LatLng( dados.getLatitude() ,dados.getLongitude() );
+	      	     
+	        simpleModel.addOverlay(new Marker(cord,dados.getNomeEstacionamento()+ "  /Fone:  "  + dados.getTelefone()));
+
+	      } 
+	        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	      
+	        }
 	        
 	        //Shared coordinates
-	        LatLng coord1 = new LatLng(-8.0610225, -34.8792507);
+	   /*   LatLng coord1 = new LatLng(-8.0610225, -34.8792507);
 	        LatLng coord2 = new LatLng(-8.039736, -34.8732322);
 	        LatLng coord3 = new LatLng(-8.0685763, -34.9092546);
 	        LatLng coord4 = new LatLng(-8.0647182, -34.9372104);
@@ -95,7 +120,7 @@ public class EstacionamentoBean {
 
 
 	    }
-	  
+	  */
 	    public MapModel getSimpleModel() {
 	        return simpleModel;
 	    }

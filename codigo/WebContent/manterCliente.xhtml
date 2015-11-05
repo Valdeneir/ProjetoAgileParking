@@ -17,7 +17,7 @@
 				font-size:16;">Manter Cliente</h1>
 
 				
-
+<h:form>
 
 <p:dataTable id="tabela" var="cliente" value="#{clienteBean.buscaCliente}" rows="5" emptyMessage="Não Existem Clientes cadastrados"
                          paginator="true"
@@ -50,16 +50,25 @@
   <p:column headerText="Acão" colspan="2">
     <p:commandLink value="Alterar" action="#{clienteBean.alterar(cliente)}" />
  <p:spacer width="100" height="10" />
-    <p:commandLink value="Excluir" action="#{clienteBean.remover(cliente)}"  update="tabela"/>
+ 
+    <p:commandLink value="Excluir" action="#{clienteBean.remover(cliente)}" update="tabela" >
+            <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+    
+   </p:commandLink>
+    
   </p:column>
-  
-  
 </p:dataTable>
-
 
 	<p:button outcome="cadastroCliente.xhtml" value="Adicionar Cliente" icon="ui-icon-check"/>
 
+  <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 
+<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+
+</p:confirmDialog>
+
+</h:form>
 
      </ui:define>
     
