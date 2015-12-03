@@ -15,11 +15,29 @@
     
      <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
 				font-size:16;">Estatísticas </h1>
-
-				
-
-
+	<form>	
 	
+			
+<p:selectOneMenu effect="fade"  filter="true" value="#{estacionamentoBean.est.cnpj}" filterMatchMode="startsWith">
+         <f:selectItem itemLabel="Estacionamentos" itemValue="" />
+         <f:selectItems value="#{estacionamentoBean.buscaEstacionamento}"
+                var="estacionamento"
+                itemLabel="#{estacionamento.nomeEstacionamento}"
+                itemValue="#{estacionamento.cnpj}"/>
+</p:selectOneMenu>
+            	
+	<p:commandButton  value="Exibir Gráfico" id="btn-mostrar" update="graf"  actionListener="#{estacionamentoBean.init}" oncomplete="PF('dlg').show()" />
+	
+	<p:dialog header="Values" id="graf" width="100%" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
+        
+         <h:panelGrid id="dadosUsu" columns="2" style="color:gold;background-color:gold;width:100%; ">
+	
+	<p:chart type="line" id="grafico" model="#{estacionamentoBean.lineModel2}" style="height:300px;"/>
+</h:panelGrid>  
+       
+    </p:dialog>
+	
+ 	</form>
      </ui:define>
     
   </ui:composition>

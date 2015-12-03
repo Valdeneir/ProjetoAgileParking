@@ -15,7 +15,7 @@ public class Estacionamento {
 	private int numero;
 	private String complemento;
 	private String telefone;
-	private double valorDaVaga;
+	private double valorVaga;
 	private float latitude;
 	private float longitude;
 	
@@ -72,11 +72,11 @@ public class Estacionamento {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public double getValorDaVaga() {
-		return valorDaVaga;
+	public double getValorVaga() {
+		return valorVaga;
 	}
-	public void setValorDaVaga(double valorDaVaga) {
-		this.valorDaVaga = valorDaVaga;
+	public void setValorVaga(double valorVaga) {
+		this.valorVaga = valorVaga;
 	}
 	public float getLatitude() {
 		return latitude;

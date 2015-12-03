@@ -17,12 +17,7 @@
 	<h:form>
 				
       <h:panelGrid id="dadosUsuario" columns="1"  style="background-color:gold;  " >
-        
-     <!--    <f:facet name="header">
-            <p:messages id="messagem" />
-        </f:facet>
-      -->
-        
+      
         <p:outputLabel value="Nome:"/>
        <h:inputHidden value="#{clienteBean.cliente.id}"/>
         <p:inputText id="nome" name="nome" value="#{clienteBean.cliente.nome}" required="true" maxlength="100" size="50"/>

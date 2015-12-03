@@ -16,7 +16,7 @@ public class Reserva {
 	private String email;
 	private String placa;
 	private String data;
-	private String cnpjR;
+	private String cnpj;
 	
 	public int getId() {
 		return id;
@@ -65,11 +65,11 @@ public class Reserva {
 		return "Reserva [id=" + id + ", cidade=" + cidade + ", tipoReserva=" + tipoReserva + ", nomeUsu=" + nomeUsu
 				+ ", email=" + email + ", placa=" + placa + ", data=" + data + "]";
 	}
-	public String getCnpjR() {
-		return cnpjR;
+	public String getCnpj() {
+		return cnpj;
 	}
-	public void setCnpjR(String cnpjR) {
-		this.cnpjR = cnpjR;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 	
 	

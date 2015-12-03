@@ -31,7 +31,7 @@ public class ClienteBean {
 	
 	
 	public void realizarReserva() throws ClassNotFoundException, SQLException{
-		System.out.println(reserva.getCnpjR());
+		System.out.println(reserva.getCnpj());
 
 		dao.registrarReserva(reserva);
 		if (getReserva() != null) {
@@ -55,7 +55,7 @@ public class ClienteBean {
 	
 	
 	public String alterar(Cliente cliente) throws ClassNotFoundException, SQLException{
-		System.out.println(reserva.getCnpjR());
+		System.out.println(reserva.getCnpj());
 
 		this.cliente = cliente;
 		
@@ -127,11 +127,11 @@ public class ClienteBean {
 	}
 	
 	public void calcularValor() throws SQLException{
-		System.out.println(reserva.getCnpjR()+ "chegou aqui linha 61");
+		System.out.println(reserva.getCnpj()+ "chegou aqui linha 61");
 
-	double result= dao.buscaValor(reserva.getCnpjR());
+	double result= dao.buscaValor(reserva.getCnpj());
 
-	System.out.println(reserva.getCnpjR()+ result);
+	System.out.println(reserva.getCnpj()+ result);
 
 		if (reserva.getTipoReserva() == "Dia") {
 		
@@ -158,7 +158,7 @@ public class ClienteBean {
 	
 	public void verificarCidade() throws ClassNotFoundException, SQLException {
 		
-		boolean result = dao.buscaEstacionamentoC(reserva.getCnpjR());
+		boolean result = dao.buscaEstacionamentoC(reserva.getCnpj());
 		System.out.println( result);
 		System.out.println( "voltou pra ca");
 

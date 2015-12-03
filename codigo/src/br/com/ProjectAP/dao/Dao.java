@@ -39,17 +39,16 @@ public class Dao {
 	public void registrarReserva(Reserva res) throws ClassNotFoundException, SQLException {
 			
 			
-			String sql = "insert into reserva(tipoReserva, nomeUsu, email, placa, data, cnpjR) values(?,?,?,?,?,?);";
+			String sql = "insert into reserva(cnpj, tipoReserva, nomeUsu, email, placa, data) values(?,?,?,?,?,?);";
 			
 				
 				PreparedStatement preparedStatement = Connect.getConnection().prepareStatement(sql);
-				preparedStatement.setString(1, res.getTipoReserva());
-				preparedStatement.setString(2, res.getNomeUsu());
-				preparedStatement.setString(3, res.getEmail());
-				preparedStatement.setString(4, res.getPlaca());
-				preparedStatement.setString(5, res.getData());
-				preparedStatement.setString(6, res.getCnpjR());
-
+				preparedStatement.setString(1, res.getCnpj());
+				preparedStatement.setString(2, res.getTipoReserva());
+				preparedStatement.setString(3, res.getNomeUsu());
+				preparedStatement.setString(4, res.getEmail());
+				preparedStatement.setString(5, res.getPlaca());
+				preparedStatement.setString(6, res.getData());
 				preparedStatement.execute();
 				preparedStatement.close();
 				
@@ -59,7 +58,8 @@ public class Dao {
 	public void insertEst(Estacionamento est) throws ClassNotFoundException, SQLException {
 			
 			
-			String sql = "insert into estacionamento(cnpj, nomeEstacionamento, cidade, rua, numero, complemento, telefone, valorDaVaga, latitude, longitude) values(?,?,?,?,?,?,?,?,?,?);";
+		System.out.println("aqui 2");
+			String sql = "insert into estacionamento(cnpj, nomeEstacionamento, cidade, rua, numero, complemento, telefone, valorVaga, latitude, longitude) values(?,?,?,?,?,?,?,?,?,?);";
 			
 				
 				PreparedStatement preparedStatement = Connect.getConnection().prepareStatement(sql);
@@ -70,7 +70,7 @@ public class Dao {
 				preparedStatement.setInt(5, est.getNumero());
 				preparedStatement.setString(6, est.getComplemento());
 				preparedStatement.setString(7, est.getTelefone());
-				preparedStatement.setDouble(8, est.getValorDaVaga());
+				preparedStatement.setDouble(8, est.getValorVaga());
 				preparedStatement.setFloat(9, est.getLatitude());
 				preparedStatement.setFloat(10, est.getLongitude());
 				preparedStatement.execute();
@@ -122,7 +122,7 @@ public class Dao {
 						 estacionamento.setNumero(rs.getInt("numero"));
 						 estacionamento.setComplemento(rs.getString("complemento"));
 						 estacionamento.setTelefone(rs.getString("telefone"));
-						 estacionamento.setValorDaVaga(rs.getDouble("valorDaVaga"));
+						 estacionamento.setValorVaga(rs.getDouble("valorVaga"));
 						 estacionamento.setLatitude(rs.getFloat("latitude"));
 						 estacionamento.setLongitude(rs.getFloat("longitude"));
 						 est.add(estacionamento);
@@ -208,7 +208,7 @@ public class Dao {
 
 			while (rs.next()) {
 				  String cnpj = rs.getString("cnpj");
-				  double valorV = rs.getDouble("valorDaVaga");
+				  double valorV = rs.getDouble("valorVaga");
 				  
 					System.out.println("chegou aqui" + cnpj + valorV );
 
@@ -323,6 +323,35 @@ public class Dao {
 		return false;
 			 }
 
+	public List<Reserva> buscaReserva() throws SQLException{
+		 
+		ArrayList<Reserva> res = new ArrayList<Reserva>();
+		String sql =  "SELECT * FROM reserva";
+			 
+				PreparedStatement pst = Connect.getConnection().prepareStatement(sql);
+
+				
+				ResultSet rs = pst.executeQuery();
+				
+
+				while (rs.next()) {
+					
+					Reserva reserva= new Reserva();
+					 reserva.setId( rs.getInt("id"));
+					 reserva.setCnpj( rs.getString("cnpj"));
+					 reserva.setEmail( rs.getString("email"));
+					 reserva.setNomeUsu(rs.getString("nomeUsu"));
+					 reserva.setPlaca(rs.getString("placa"));
+					 reserva.setTipoReserva(rs.getString("tipoReserva"));
+					 reserva.setData(rs.getString("data"));
+
+					
+					 res.add(reserva);
+					 				
+				}
+				return res;
+		
+ }
 
 }
 	

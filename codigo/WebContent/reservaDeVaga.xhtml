@@ -44,7 +44,7 @@
   </p:column>    
   
   <p:column headerText="Valor da Vaga/dia">
-    <h:outputText value="#{estacionamento.valorDaVaga}"/>
+    <h:outputText value="#{estacionamento.valorVaga}"/>
   </p:column>
   
 </p:dataTable>
@@ -53,7 +53,7 @@
        <h:commandLink  value="Lista de Estacionamentos" onclick="PF('dlg3').show()" />
        
 		<p:outputLabel for="cnpjR"  value="CNPJ:"/>
-        <p:inputMask id="cnpjR" name="cnpjR"  value="#{clienteBean.reserva.cnpjR}" required="true" maxlength="100" size="30" mask="99.999.999/9999-99">
+        <p:inputMask id="cnpjR" name="cnpjR"  value="#{clienteBean.reserva.cnpj}" required="true" maxlength="100" size="30" mask="99.999.999/9999-99">
 	
 	
 		  </p:inputMask>
@@ -92,7 +92,7 @@
        <p:panelGrid columns="2" id="imprime" >
      
      		<h:outputText value="CNPJ: " />
-            <h:outputText value="#{clienteBean.reserva.cnpjR}" />
+            <h:outputText value="#{clienteBean.reserva.cnpj}" />
  
             <h:outputText value="Valor: " />
             <h:outputText value="#{clienteBean.resultValor}"/>
@@ -123,7 +123,7 @@
         </f:facet>
      
      		<h:outputText value="CNPJ: " />
-            <h:outputText value="#{clienteBean.reserva.cnpjR}" />
+            <h:outputText value="#{clienteBean.reserva.cnpj}" />
  
             <h:outputText value="Tipo de Reserva: " />
             <h:outputText value="#{clienteBean.reserva.tipoReserva}"/>
