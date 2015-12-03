@@ -89,7 +89,7 @@ public class EstacionamentoBean {
 	 	      
 	        LatLng cord = new LatLng( dados.getLatitude() ,dados.getLongitude() );
 	      	     
-	        simpleModel.addOverlay(new Marker(cord,dados.getNomeEstacionamento()+ "  /Fone:  "  + dados.getTelefone()));
+	        simpleModel.addOverlay(new Marker(cord,dados.getNomeEstacionamento()+ "\n" + "Telefone:  "  + dados.getTelefone()));
 
 	      } 
 	        
@@ -98,29 +98,7 @@ public class EstacionamentoBean {
 		}
 	      
 	        }
-	        
-	        //Shared coordinates
-	   /*   LatLng coord1 = new LatLng(-8.0610225, -34.8792507);
-	        LatLng coord2 = new LatLng(-8.039736, -34.8732322);
-	        LatLng coord3 = new LatLng(-8.0685763, -34.9092546);
-	        LatLng coord4 = new LatLng(-8.0647182, -34.9372104);
-	        LatLng coord5 = new LatLng(-8.0634322, -34.9341639);
-	        LatLng coord6 = new LatLng(-8.0529223, -34.8964456);
-	        LatLng coord7 = new LatLng(-7.934422,-34.8687212);
-	        
-	          
-	        //Basic marker
-	        simpleModel.addOverlay(new Marker(coord1, "Park agil"));
-	        simpleModel.addOverlay(new Marker(coord2, "Faculdade"));
-	        simpleModel.addOverlay(new Marker(coord3, "Faculdade Nova Roma"));
-	        simpleModel.addOverlay(new Marker(coord4, "Habibs"));
-	        simpleModel.addOverlay(new Marker(coord5, "Faculdade Estacio"));
-	        simpleModel.addOverlay(new Marker(coord6, "Banco do Brasil"));
-	        simpleModel.addOverlay(new Marker(coord7, "Shoping Paulista"));
-
-
-	    }
-	  */
+	   
 	    public MapModel getSimpleModel() {
 	        return simpleModel;
 	    }

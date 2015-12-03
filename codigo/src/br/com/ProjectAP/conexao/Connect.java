@@ -12,7 +12,7 @@ public class Connect {
 		  DriverManager.registerDriver(new com.mysql.jdbc.Driver()); 
 
 	         return DriverManager.getConnection(
-	 "jdbc:mysql://localhost/projectap","root","1234");
+	 "jdbc:mysql://localhost/projectap","root","wendell15");
 	     } catch (SQLException e) {
 	         throw new RuntimeException(e);
 	     }

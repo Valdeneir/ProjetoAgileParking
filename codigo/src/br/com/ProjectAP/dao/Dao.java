@@ -20,13 +20,14 @@ public class Dao {
 	public void insertCliente(Cliente cliente) throws ClassNotFoundException, SQLException {
 			
 			
-			String sql = "insert into cliente(cpf, nome, placaVeiculo, username, senha) values(?,?,?,?,?);";
+			String sql = "insert into cliente(nome, cpf, placa, username, senha) values(?,?,?,?,?);";
 			
 				
 				PreparedStatement preparedStatement = Connect.getConnection().prepareStatement(sql);
-				preparedStatement.setString(1, cliente.getCpf());
-				preparedStatement.setString(2, cliente.getNome());
-				preparedStatement.setString(3, cliente.getPlacaVeiculo());
+				
+				preparedStatement.setString(1, cliente.getNome());
+				preparedStatement.setString(2, cliente.getCpf());
+				preparedStatement.setString(3, cliente.getPlaca());
 				preparedStatement.setString(4, cliente.getUsername());
 				preparedStatement.setString(5, cliente.getSenha());
 				preparedStatement.execute();
@@ -38,7 +39,7 @@ public class Dao {
 	public void registrarReserva(Reserva res) throws ClassNotFoundException, SQLException {
 			
 			
-			String sql = "insert into reservas(tipoReserva, nomeUsu, email, placa, data, cnpjR) values(?,?,?,?,?,?);";
+			String sql = "insert into reserva(tipoReserva, nomeUsu, email, placa, data, cnpjR) values(?,?,?,?,?,?);";
 			
 				
 				PreparedStatement preparedStatement = Connect.getConnection().prepareStatement(sql);
@@ -58,7 +59,7 @@ public class Dao {
 	public void insertEst(Estacionamento est) throws ClassNotFoundException, SQLException {
 			
 			
-			String sql = "insert into estacionamentos(cnpj, nomeEstacionamento, cidade, rua, numero, complemento, telefone, valorDaVaga, latitude, longitude) values(?,?,?,?,?,?,?,?,?,?);";
+			String sql = "insert into estacionamento(cnpj, nomeEstacionamento, cidade, rua, numero, complemento, telefone, valorDaVaga, latitude, longitude) values(?,?,?,?,?,?,?,?,?,?);";
 			
 				
 				PreparedStatement preparedStatement = Connect.getConnection().prepareStatement(sql);
@@ -80,7 +81,7 @@ public class Dao {
 
 	public boolean buscaEstacionamentoC(String cnpjR) throws SQLException{
 		 
-		 String sql =  "SELECT * FROM estacionamentos";
+		 String sql =  "SELECT * FROM estacionamento";
 		 
 			PreparedStatement pst = Connect.getConnection().prepareStatement(sql);
 
@@ -102,7 +103,7 @@ public class Dao {
 	public List<Estacionamento> buscaEstacionamento() throws SQLException{
 				 
 			ArrayList<Estacionamento> est = new ArrayList<Estacionamento>();
-			String sql =  "SELECT * FROM estacionamentos";
+			String sql =  "SELECT * FROM estacionamento";
 				 
 					PreparedStatement pst = Connect.getConnection().prepareStatement(sql);
 
@@ -112,7 +113,8 @@ public class Dao {
 
 					while (rs.next()) {
 						
-						Estacionamento estacionamento = new Estacionamento(); 
+						Estacionamento estacionamento = new Estacionamento();
+						 estacionamento.setId( rs.getInt("id"));
 						 estacionamento.setCnpj( rs.getString("cnpj"));
 						 estacionamento.setNomeEstacionamento( rs.getString("nomeEstacionamento"));
 						 estacionamento.setCidade(rs.getString("cidade"));
@@ -148,7 +150,7 @@ public class Dao {
 					 cliente.setId( rs.getLong("id"));
 					 cliente.setCpf( rs.getString("cpf"));
 					 cliente.setNome( rs.getString("nome"));
-					 cliente.setPlacaVeiculo(rs.getString("placaVeiculo"));
+					 cliente.setPlaca(rs.getString("placa"));
 					 cliente.setUsername(rs.getString("username"));
 					 cliente.setSenha(rs.getString("senha"));
 					 
@@ -161,7 +163,7 @@ public class Dao {
  }
 	
 	public void alteraCliente(Cliente cliente) {
-	     String sql = "update cliente set cpf=?, nome=?, placaVeiculo=?, username=?," +
+	     String sql = "update cliente set cpf=?, nome=?, placa=?, username=?," +
 	             "senha=? where id=?";
 	     try {
 	    	 
@@ -170,7 +172,7 @@ public class Dao {
 				
 	    	 	preparedStatement.setString(1, cliente.getCpf());
 				preparedStatement.setString(2, cliente.getNome());
-				preparedStatement.setString(3, cliente.getPlacaVeiculo());
+				preparedStatement.setString(3, cliente.getPlaca());
 				preparedStatement.setString(4, cliente.getUsername());
 				preparedStatement.setString(5, cliente.getSenha());
 				preparedStatement.setLong(6, cliente.getId());
@@ -197,7 +199,7 @@ public class Dao {
 	public double buscaValor(String cnpjR) throws SQLException{
 		System.out.println("chegou aqui" + cnpjR );
 
-		 String sql =  "SELECT * FROM estacionamentos";
+		 String sql =  "SELECT * FROM estacionamento";
 		 
 			PreparedStatement pst = Connect.getConnection().prepareStatement(sql);
 
@@ -318,19 +320,8 @@ public class Dao {
 			
 			}
 	
-		
-						
-			
 		return false;
-		
-	
-	 }
-
-	public void autenticar(String tipo, String user, String sen){
-		
-		
-		
-	}
+			 }
 
 
 }

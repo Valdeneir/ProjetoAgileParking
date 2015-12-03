@@ -35,6 +35,8 @@ public class AutencicacaoLogin {
 		return cLogado;
 	}
 
+	
+	
 	public void setcLogado(Cliente cLogado) {
 		this.cLogado = cLogado;
 	}

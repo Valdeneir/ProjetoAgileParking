@@ -87,14 +87,12 @@ public class ClienteBean {
 		
 	}
 	
-	
-	
 	public void cadastrar() throws ClassNotFoundException, SQLException{
 		
 		System.out.println(cliente.getId());
 		System.out.println(dao.verificacpf(cliente.getCpf()));
 		
-		if(cliente.getId()== 0 ){
+		if(cliente.getId()== 0){
 			
 			if(dao.verificacpf(cliente.getCpf())== false){
 				
@@ -183,10 +181,16 @@ public class ClienteBean {
 	
 	public void verificarCpf() throws ClassNotFoundException, SQLException {
 		
-		if(dao.verificacpf(cliente.getCpf())== true){
+		 System.out.println( cliente.getId());
+		
+		if(dao.verificacpf(cliente.getCpf())== true && cliente.getId() == 0){
 			
 			FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("CPF Já cadastrado!!"));
+			
+		}else{
+			
+			cadastrar();
 			
 		}
 	}

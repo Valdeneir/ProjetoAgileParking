@@ -13,7 +13,7 @@ public class Cliente {
 	private long id;
 	private String cpf;
 	private String nome;
-	private String placaVeiculo;
+	private String placa;
 	private String username;
 	private String senha;
 	
@@ -40,11 +40,11 @@ public class Cliente {
 	}
 	
 	
-	public String getPlacaVeiculo() {
-		return placaVeiculo;
+	public String getPlaca() {
+		return placa;
 	}
-	public void setPlacaVeiculo(String placaVeiculo) {
-		this.placaVeiculo = placaVeiculo;
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 	
 	public String getUsername() {
@@ -63,7 +63,7 @@ public class Cliente {
 	
 	@Override
 	public String toString() {
-		return "Cliente [nome=" + nome + ", cpf=" + cpf + ", placaVeiculo=" + placaVeiculo + ", username=" + username
+		return "Cliente [nome=" + nome + ", cpf=" + cpf + ", placa=" + placa + ", username=" + username
 				+ ", senha=" + senha + "]";
 	}	
 		

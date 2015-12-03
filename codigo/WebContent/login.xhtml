@@ -7,22 +7,18 @@
       xmlns:f="http://java.sun.com/jsf/core">
       
     
-  <ui:composition template="/index.xhtml">
+  <ui:composition  template="/index.xhtml">
   
-    <ui:define name="conteudo" >
+    <ui:define  name="conteudo" >
       <h1 style="color:black;text-shadow:gold 1px -1px 2px, gold -1px 1px 2px, gold 1px 1px 2px, gold -1px -1px 2px;
 				font-size:16;">Login</h1>
 				
       <h:panelGrid style="background-color:gold;" >
         
-   <h:form >
-            <p:messages id="mess"/>
+         
  
  <h:panelGrid id="dadosUsu" columns="2" style="color:gold;background-color:black; ">
         
-            
-  
-	
 		<h:outputText id="Usu" value="Usuario:" />  
         <h:selectOneMenu id="selecao" value="#{autencicacaoLogin.tipo}" >
         
@@ -38,18 +34,12 @@
 		<p:outputLabel for="senha"  value="Senha: " />
 		<p:password id="senha" required="true" nome="senha" value="#{autencicacaoLogin.cLogado.senha}" maxlength="10" size="11" />
 		
-		<p:commandButton value="OK" id="dadoU" style="color:gold;background-color:black;" actionListener="#{autencicacaoLogin.entrar}" update="mess" />
+		<p:commandButton value="OK" id="btnLogin" style="color:gold;background-color:black;" actionListener="#{autencicacaoLogin.entrar}" update="@all" />
        
-
-			</h:panelGrid>
+       			</h:panelGrid>
    
-</h:form>
-
  </h:panelGrid>
- 
- 
-
-     </ui:define>
+  </ui:define>
     
   </ui:composition>
 </html>
